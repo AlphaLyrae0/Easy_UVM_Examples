@@ -31,8 +31,8 @@ module test_bench;
     virtual task run_phase (uvm_phase phase);
         phase.raise_objection(this);
         `uvm_info( "my_test", "Hello! This is an UVM message.", UVM_MEDIUM)
-        test_sequence();
       //@(test_doe_evt);                //<========= Not necessary now
+        test_sequence();                //<========= Call task here instead
         phase.drop_objection(this);
     endtask
 
