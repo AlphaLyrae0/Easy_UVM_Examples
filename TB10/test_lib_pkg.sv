@@ -32,6 +32,7 @@ package test_lib_pkg;
     endfunction
 
     virtual function void start_of_simulation_phase(uvm_phase phase);
+        `uvm_info(get_type_name(), "Start of Test !!!!", UVM_MEDIUM)
         set_params();
         `uvm_info(get_type_name(), $sformatf("param_a = %b, param_b = %b, param_c =%b", vif.param_a, vif.param_b, vif.param_c), UVM_MEDIUM)
     endfunction

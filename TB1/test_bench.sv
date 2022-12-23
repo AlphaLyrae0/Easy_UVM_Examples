@@ -2,7 +2,6 @@
 //`include "uvm_pkg.sv"  //<=========== To compile file of UVM.
 module test_bench;
   import uvm_pkg::*;     //<=========== To use UVM class libraries
-
   bit       clk, rst_n;
   bit       param_a, param_b, param_c;  // Input Settings
   bit [0:2] sig;                        // Input Signals
@@ -50,14 +49,14 @@ module test_bench;
      .sig,
      .x , .y, .z);
 
-int i;
-bit[2:0] exp_xyz[100];
-always@(posedge clk) begin
-  if ({x,y,z} !== exp_xyz[i])
-    `uvm_error("test_bench", $sformatf("ERROR !!! xyz = %b%b%b, expected %3b",x,y,z, exp_xyz[i]))
-  else
-    `uvm_info ("test_bench", $sformatf("OK        xyz = %b%b%b, expected %3b",x,y,z, exp_xyz[i]), UVM_MEDIUM)
-  i++;
-end
+  int i;
+  bit[2:0] exp_xyz[100];
+  always@(posedge clk) begin
+    if ({x,y,z} !== exp_xyz[i])
+      `uvm_error("test_bench", $sformatf("ERROR !!! xyz = %b%b%b, expected %3b",x,y,z, exp_xyz[i]))
+    else
+      `uvm_info ("test_bench", $sformatf("OK        xyz = %b%b%b, expected %3b",x,y,z, exp_xyz[i]), UVM_MEDIUM)
+    i++;
+  end
 
 endmodule

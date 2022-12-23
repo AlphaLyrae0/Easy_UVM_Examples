@@ -24,14 +24,14 @@ module test_bench;
      .sig,
      .x , .y, .z);
 
-int i;
-bit[2:0] exp_xyz[100];
-always@(posedge clk) begin
-  if ({x,y,z} !== exp_xyz[i])
-    $display("ERROR !!! xyz = %b%b%b, expected %3b",x,y,z, exp_xyz[i]);
-  else
-    $display("OK        xyz = %b%b%b, expected %3b",x,y,z, exp_xyz[i]);
-  i++;
-end
+  int i;
+  bit[2:0] exp_xyz[100];
+  always@(posedge clk) begin
+    if ({x,y,z} !== exp_xyz[i])
+      $display("ERROR !!! xyz = %b%b%b, expected %3b",x,y,z, exp_xyz[i]);
+    else
+      $display("OK        xyz = %b%b%b, expected %3b",x,y,z, exp_xyz[i]);
+    i++;
+  end
 
 endmodule
