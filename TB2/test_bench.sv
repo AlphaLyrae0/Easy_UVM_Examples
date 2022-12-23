@@ -1,6 +1,6 @@
 `include "uvm_macros.svh" //<===========
 module test_bench;
-    import uvm_pkg::*;     //<===========
+    import uvm_pkg::*;    //<===========
 
     bit         clk, rst_n;
     bit         param_a, param_b, param_c;  // Input Settings
@@ -24,14 +24,14 @@ module test_bench;
     endfunction
 
     virtual function void start_of_simulation_phase(uvm_phase phase);
-        set_params();
+        set_params();                   //<============ Set parameters before test run
         `uvm_info(get_type_name(), $sformatf("param_a = %b, param_b = %b, param_c =%b", param_a, param_b, param_c), UVM_MEDIUM)
     endfunction
 
     virtual task run_phase (uvm_phase phase);
         phase.raise_objection(this);
         `uvm_info( "my_test", "Hello! This is an UVM message.", UVM_MEDIUM)
-        @(test_done_evt);               //<========= Not necessary now
+        @(test_done_evt);
         phase.drop_objection(this);
     endtask
 
