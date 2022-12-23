@@ -4,7 +4,7 @@ You can learn how UVM is applied to your conventional module based testbenches i
   
 TB0   : Original module based testbench<BR>
 TB0.5 : UVM message printing application<BR>
-TB1   : Define UVM test class inside the testbench module. Test start and finish by the UVM test class with report summary printing<BR>
+TB1   : Usage of UVM test class inside the testbench module. Test start and finish by the UVM test class with report summary printing<BR>
 TB2   : DUT configuration from the UVM test class<BR>
 TB3   : Start a test sequence task from the UVM test class<BR>
 TB4   : Add another (random) UVM test<BR>
