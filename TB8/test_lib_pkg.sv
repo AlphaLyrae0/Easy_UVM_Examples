@@ -25,15 +25,15 @@ package test_lib_pkg;
         phase.raise_objection(this);
         `uvm_info( "my_test", "Hello! This is an UVM message.", UVM_MEDIUM)
         fork
-            this.check_result();
+            this.check_result();        // <========
         join_none
         vif.reset_release();
         `uvm_info(get_type_name(), "Reset Is Released!!!", UVM_MEDIUM)
-        this.drive_sig();
+        this.drive_sig();               // <========
         phase.drop_objection(this);
     endtask
 
-    virtual task drive_sig();
+    virtual task drive_sig();           // <======== Added
         `uvm_info(get_type_name(), "BFM start driving!!!", UVM_MEDIUM);
         @(posedge vif.clk) vif.sig = 'b1_1_1;
         @(posedge vif.clk) vif.sig = 'b0_1_1;
@@ -41,7 +41,7 @@ package test_lib_pkg;
         @(posedge vif.clk) vif.sig = 'b0_0_0;
     endtask
 
-    virtual task check_result();
+    virtual task check_result();        // <======== Added
         int i;
         bit[2:0] exp_xyz[100];
         forever @(posedge vif.clk) begin

@@ -2,7 +2,7 @@
 //`include "uvm_pkg.sv"
 module test_bench;
   import uvm_pkg::*;
-  import test_lib_pkg::*;               // <========= Added
+  import test_lib_pkg::*;                   // <========= Added
   bit           clk, rst_n;
 //bit           param_a, param_b, param_c;  // Input Settings ========= Moved to dut_if
   bit [0:2]     sig;                        // Input Signals

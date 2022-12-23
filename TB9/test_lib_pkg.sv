@@ -61,7 +61,6 @@ package test_lib_pkg;
 
   endclass
 
-  //############################################
   class my_test extends uvm_test;
     `uvm_component_utils(my_test)
 
@@ -101,9 +100,7 @@ package test_lib_pkg;
     endtask
 
   endclass
-  //############################################
 
-  //############################################
   class random_test extends my_test;
     `uvm_component_utils(random_test)
 
@@ -119,6 +116,5 @@ package test_lib_pkg;
     endfunction
 
   endclass
-  //############################################
 
 endpackage

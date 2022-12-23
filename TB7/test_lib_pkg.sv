@@ -49,6 +49,5 @@ package test_lib_pkg;
     endfunction
 
   endclass
-  //############################################
 
 endpackage
