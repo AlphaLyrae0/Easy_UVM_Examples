@@ -7,14 +7,19 @@ package test_lib_pkg;
   bit       param_a, param_b, param_c;
 
   class my_test extends uvm_test;
-    `uvm_component_utils(my_test)
+  //`uvm_component_utils(my_test)
+    `uvm_component_utils_begin(my_test)                     // <=======
+        `uvm_field_int(param_abc, UVM_DEFAULT | UVM_BIN)    // <=======
+    `uvm_component_utils_end                                // <=======
 
     function new(string name, uvm_component parent);
         super.new(name, parent);
     endfunction
 
+    rand bit[2:0] param_abc = 3'b110;
+
     virtual function void set_params();
-        {param_a, param_b, param_c} = 3'b110;
+        {param_a, param_b, param_c} = param_abc;
     endfunction
 
     my_driver  m_drv;
@@ -27,7 +32,8 @@ package test_lib_pkg;
     virtual function void start_of_simulation_phase(uvm_phase phase);
         `uvm_info(get_type_name(), "Start of Test !!!!", UVM_MEDIUM)
         set_params();
-        `uvm_info(get_type_name(), $sformatf("param_a = %b, param_b = %b, param_c =%b", param_a, param_b, param_c), UVM_MEDIUM)
+      //`uvm_info(get_type_name(), $sformatf("param_a = %b, param_b = %b, param_c =%b", param_a, param_b, param_c), UVM_MEDIUM)
+        `uvm_info(get_type_name(), {"\n",this.sprint()}, UVM_MEDIUM)    // <===========
     endfunction
 
     virtual task run_phase(uvm_phase phase);
@@ -47,11 +53,9 @@ package test_lib_pkg;
         super.new(name, parent);
     endfunction
 
-    rand bit[2:0] param_abc = 3'b110;
-
     virtual function void set_params();
         this.randomize();
-        {param_a, param_b, param_c} = this.param_abc;
+        super.set_params();
     endfunction
 
   endclass
