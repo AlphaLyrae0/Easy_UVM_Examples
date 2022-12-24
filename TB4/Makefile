@@ -6,6 +6,8 @@ XSIM  := $(VIVADO_DIR)/xsim
 COM_DIR := xsim.dir/work
 TESTNAME := my_test
 
+all : my_test random_test
+
 my_test :
 	make run TESTNAME=$@
 

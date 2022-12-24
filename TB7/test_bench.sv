@@ -4,7 +4,7 @@ module test_bench;
   import uvm_pkg::*;
   import test_lib_pkg::*;                   // <========= Added
   bit           clk, rst_n;
-//bit           param_a, param_b, param_c;  // Input Settings ========= Moved to dut_if
+//bit           param_a, param_b, param_c;  // Input Settings =========> Moved to test_lib_pkg
   bit [0:2]     sig;                        // Input Signals
   logic         x, y, z;                    // Output
 
@@ -14,7 +14,7 @@ module test_bench;
   //############## ==========> Classes were moved into test_lib_pkg
 
   initial begin
-    test_lib_pkg::vif = test_bench.i_dut_if;    // <========= interface handle passing
+    test_lib_pkg::vif = test_bench.i_bfm_if;    // <========= interface handle passing
     uvm_pkg::run_test(); //"my_test");
   end
 
@@ -25,10 +25,10 @@ module test_bench;
   endtask
 
   bfm i_bfm(.clk, .sig);
-//dut_if i_dut_if(); // Instanciated by bind, not here
+//bfm_if i_bfm_if(); // Instanciated by bind, not here
 
   dut i_dut (.clk, .rst_n,
-     .param_a(i_dut_if.param_a), .param_b(i_dut_if.param_b), .param_c(i_dut_if.param_c), // <=======
+     .param_a(param_a), .param_b(param_b), .param_c(param_c),
      .sig,
      .x , .y, .z);
 

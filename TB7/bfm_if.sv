@@ -1,8 +1,6 @@
-bind test_bench dut_if i_dut_if();
+bind test_bench bfm_if i_bfm_if();
 
-interface dut_if();
-
-    bit param_a, param_b, param_c;
+interface bfm_if();
 
     task reset_release();
         test_bench.reset_release();

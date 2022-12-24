@@ -6,6 +6,8 @@ XSIM  := $(VIVADO_DIR)/xsim
 COM_DIR := xsim.dir/work
 TESTNAME := my_test
 
+all : my_test random_test
+
 my_test :
 	make run TESTNAME=$@
 
@@ -26,8 +28,6 @@ $(COM_DIR)/scoreboard_pkg.sdb : ./scoreboard_pkg.sv
 	$(XVLOG) -L uvm --sv $<
 $(COM_DIR)/test_lib_pkg.sdb : ./test_lib_pkg.sv
 	$(XVLOG) -L uvm --sv $<
-$(COM_DIR)/dut_prm_if.sdb : ./dut_prm_if.sv
-	$(XVLOG) -L uvm --sv $<
 $(COM_DIR)/dut_in_if.sdb : ./dut_in_if.sv
 	$(XVLOG) -L uvm --sv $<
 $(COM_DIR)/dut_out_if.sdb : ./dut_out_if.sv
@@ -35,7 +35,7 @@ $(COM_DIR)/dut_out_if.sdb : ./dut_out_if.sv
 $(COM_DIR)/test_bench.sdb : ./test_bench.sv
 	$(XVLOG) -L uvm --sv $<
 
-$(COM_DIR).test_bench : $(COM_DIR)/dut.sdb $(COM_DIR)/agent_pkg.sdb $(COM_DIR)/scoreboard_pkg.sdb $(COM_DIR)/test_lib_pkg.sdb $(COM_DIR)/dut_prm_if.sdb  $(COM_DIR)/dut_in_if.sdb $(COM_DIR)/dut_out_if.sdb $(COM_DIR)/test_bench.sdb
+$(COM_DIR).test_bench : $(COM_DIR)/dut.sdb $(COM_DIR)/agent_pkg.sdb $(COM_DIR)/scoreboard_pkg.sdb $(COM_DIR)/test_lib_pkg.sdb $(COM_DIR)/dut_in_if.sdb $(COM_DIR)/dut_out_if.sdb $(COM_DIR)/test_bench.sdb
 	$(XELAB) -L uvm test_bench
 
 clean :

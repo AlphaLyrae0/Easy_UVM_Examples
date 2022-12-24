@@ -2,7 +2,9 @@
 package test_lib_pkg;
   import uvm_pkg::*;
 
-  virtual dut_if vif; //<==== Virtual Interface
+  bit param_a, param_b, param_c;
+
+  virtual bfm_if vif; //<==== Virtual Interface
 
   class my_test extends uvm_test;
     `uvm_component_utils(my_test)
@@ -12,13 +14,13 @@ package test_lib_pkg;
     endfunction
 
     virtual function void set_params();
-        {vif.param_a, vif.param_b, vif.param_c} = 3'b110;
+        {param_a, param_b, param_c} = 3'b110;
     endfunction
 
     virtual function void start_of_simulation_phase(uvm_phase phase);
         `uvm_info(get_type_name(), "Start of Test !!!!", UVM_MEDIUM)
         set_params();
-        `uvm_info(get_type_name(), $sformatf("param_a = %b, param_b = %b, param_c =%b", vif.param_a, vif.param_b, vif.param_c), UVM_MEDIUM)
+        `uvm_info(get_type_name(), $sformatf("param_a = %b, param_b = %b, param_c =%b", param_a, param_b, param_c), UVM_MEDIUM)
     endfunction
 
     virtual task run_phase(uvm_phase phase);
@@ -45,7 +47,7 @@ package test_lib_pkg;
 
     virtual function void set_params();
         this.randomize();
-        {vif.param_a, vif.param_b, vif.param_c} = this.param_abc;
+        {param_a, param_b, param_c} = this.param_abc;
     endfunction
 
   endclass
