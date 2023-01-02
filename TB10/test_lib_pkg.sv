@@ -9,7 +9,7 @@ package test_lib_pkg;
   class my_test extends uvm_test;
   //`uvm_component_utils(my_test)
     `uvm_component_utils_begin(my_test)                     // <=======
-        `uvm_field_int(param_abc, UVM_DEFAULT | UVM_BIN)    // <=======
+        `uvm_field_int(param_abc, UVM_PRINT | UVM_BIN)      // <=======
     `uvm_component_utils_end                                // <=======
 
     function new(string name, uvm_component parent);
