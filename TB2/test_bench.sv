@@ -42,8 +42,9 @@ module test_bench;
   initial uvm_pkg::run_test("my_test");
 
   initial begin
-  //{param_a, param_b, param_c} = 'b110;// ===========> Moved to start_of_simulation_phase()
-    uvm_pkg::uvm_wait_for_nba_region(); // <=========== Wait until the start of run_phase()
+  //`uvm_info("test_bench", "Start of Test !!!!", UVM_MEDIUM)   // ===========> Moved to start_of_simulation_phase()
+  //{param_a, param_b, param_c} = 'b110;                        // ===========> Moved to start_of_simulation_phase()
+    uvm_pkg::uvm_wait_for_nba_region();                         // <=========== Wait until the start of run_phase()
     `uvm_info("test_bench", "Waited until the start of run_phase.", UVM_MEDIUM)
     repeat(10) @(posedge clk);
     #(100/2)    rst_n = 1;
