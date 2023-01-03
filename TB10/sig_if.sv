@@ -1,5 +1,5 @@
 
-interface dut_in_if(input clk, rst_n);
+interface sig_if(input clk, rst_n);
 
     bit [0:2]   sig;
 

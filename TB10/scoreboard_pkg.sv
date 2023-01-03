@@ -2,7 +2,7 @@
 package scoreboard_pkg;
   import uvm_pkg::*;
 
-  virtual dut_out_if    vif; //<==== Virtual Interface
+  virtual xyz_if vif;   //<==== Virtual Interface
 
   class my_monitor extends uvm_monitor;
     `uvm_component_utils(my_monitor)

@@ -2,7 +2,7 @@
 package agent_pkg;
   import uvm_pkg::*;
 
-  virtual dut_in_if vif ; //<==== Virtual Interface
+  virtual sig_if vif;   //<==== Virtual Interface
 
   class my_driver extends uvm_driver;
     `uvm_component_utils(my_driver)

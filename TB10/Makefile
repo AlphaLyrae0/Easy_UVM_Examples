@@ -30,14 +30,14 @@ $(COM_DIR)/test_lib_pkg.sdb : ./test_lib_pkg.sv
 	$(XVLOG) -L uvm --sv $<
 $(COM_DIR)/dut_if.sdb    : ./dut_if.sv
 	$(XVLOG) -L uvm --sv $<
-$(COM_DIR)/dut_in_if.sdb : ./dut_in_if.sv
+$(COM_DIR)/sig_if.sdb : ./sig_if.sv
 	$(XVLOG) -L uvm --sv $<
-$(COM_DIR)/dut_out_if.sdb : ./dut_out_if.sv
+$(COM_DIR)/xyz_if.sdb : ./xyz_if.sv
 	$(XVLOG) -L uvm --sv $<
 $(COM_DIR)/test_bench.sdb : ./test_bench.sv
 	$(XVLOG) -L uvm --sv $<
 
-$(COM_DIR).test_bench : $(COM_DIR)/dut.sdb $(COM_DIR)/agent_pkg.sdb $(COM_DIR)/scoreboard_pkg.sdb $(COM_DIR)/test_lib_pkg.sdb $(COM_DIR)/dut_if.sdb $(COM_DIR)/dut_in_if.sdb $(COM_DIR)/dut_out_if.sdb $(COM_DIR)/test_bench.sdb
+$(COM_DIR).test_bench : $(COM_DIR)/dut.sdb $(COM_DIR)/agent_pkg.sdb $(COM_DIR)/scoreboard_pkg.sdb $(COM_DIR)/test_lib_pkg.sdb $(COM_DIR)/dut_if.sdb $(COM_DIR)/sig_if.sdb $(COM_DIR)/xyz_if.sdb $(COM_DIR)/test_bench.sdb
 	$(XELAB) -L uvm test_bench
 
 clean :
