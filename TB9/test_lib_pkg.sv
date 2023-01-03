@@ -8,17 +8,12 @@ package test_lib_pkg;
 
   virtual dut_if vif;
 
-  class my_driver extends uvm_driver;
+  class my_driver extends uvm_driver;   // <======================= added
     `uvm_component_utils(my_driver)
 
     function new(string name, uvm_component parent);
         super.new(name, parent);
     endfunction
-
-    virtual task reset_release;
-        vif.reset_release();
-        `uvm_info(get_type_name(), "Reset Is Released!!!", UVM_MEDIUM)
-    endtask
 
     virtual task drive_sig();
         `uvm_info(get_type_name(), "BFM start driving!!!", UVM_MEDIUM);
@@ -30,7 +25,7 @@ package test_lib_pkg;
 
   endclass
 
-  class my_monitor extends uvm_monitor;
+  class my_monitor extends uvm_monitor; // <======================= added
     `uvm_component_utils(my_monitor)
 
     function new(string name, uvm_component parent);
@@ -39,6 +34,7 @@ package test_lib_pkg;
 
     int i;
     bit[2:0] exp_xyz[100];
+  //virtual task check_result();
     virtual task run_phase(uvm_phase phase);
         forever @(posedge vif.clk) begin
           if ({x,y,z} !== exp_xyz[i])
@@ -62,12 +58,12 @@ package test_lib_pkg;
         {param_a, param_b, param_c} = 3'b110;
     endfunction
 
-    my_driver  m_drv;
-    my_monitor m_mon;
-    virtual function void build_phase(uvm_phase phase);
-        m_drv = my_driver ::type_id::create("m_drv", this);
-        m_mon = my_monitor::type_id::create("m_mon", this);
-    endfunction
+    my_driver  m_drv;                                       // <==============
+    my_monitor m_mon;                                       // <==============
+    virtual function void build_phase(uvm_phase phase);     // <==============
+        m_drv = my_driver ::type_id::create("m_drv", this); // <==============
+        m_mon = my_monitor::type_id::create("m_mon", this); // <==============
+    endfunction                                             // <==============
 
     virtual function void start_of_simulation_phase(uvm_phase phase);
         `uvm_info(get_type_name(), "Start of Test !!!!", UVM_MEDIUM)
@@ -78,8 +74,12 @@ package test_lib_pkg;
     virtual task run_phase(uvm_phase phase);
         phase.raise_objection(this);
         `uvm_info( "my_test", "Hello! This is an UVM message.", UVM_MEDIUM)
-        m_drv.reset_release();
-        m_drv.drive_sig();
+      //fork                        // ============>
+      //    this.check_result();    // ============>
+      //join_none                   // ============>
+        vif.reset_release();
+        `uvm_info(get_type_name(), "Reset Is Released!!!", UVM_MEDIUM)
+        m_drv.drive_sig();          // <===========
         phase.drop_objection(this);
     endtask
 

@@ -2,19 +2,13 @@
 package scoreboard_pkg;
   import uvm_pkg::*;
 
-  virtual dut_out_if    out_vif; //<==== Virtual Interface
+  virtual dut_out_if    vif; //<==== Virtual Interface
 
   class my_monitor extends uvm_monitor;
     `uvm_component_utils(my_monitor)
 
     function new(string name, uvm_component parent);
         super.new(name, parent);
-    endfunction
-
-    virtual dut_out_if vif;
-
-    virtual function void connect_phase(uvm_phase phase);
-        vif = out_vif;
     endfunction
 
     int i;

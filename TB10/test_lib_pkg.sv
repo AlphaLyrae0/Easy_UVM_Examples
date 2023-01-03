@@ -1,10 +1,12 @@
 `include "uvm_macros.svh"
 package test_lib_pkg;
   import uvm_pkg::*;
-  import agent_pkg     ::my_driver ;
-  import scoreboard_pkg::my_monitor;
+  import agent_pkg     ::my_driver ;                        // <=======
+  import scoreboard_pkg::my_monitor;                        // <=======
 
   bit       param_a, param_b, param_c;
+
+  virtual dut_if vif;
 
   class my_test extends uvm_test;
   //`uvm_component_utils(my_test)
@@ -39,7 +41,8 @@ package test_lib_pkg;
     virtual task run_phase(uvm_phase phase);
         phase.raise_objection(this);
         `uvm_info( "my_test", "Hello! This is an UVM message.", UVM_MEDIUM)
-        m_drv.reset_release();
+        vif.reset_release();
+        `uvm_info(get_type_name(), "Reset Is Released!!!", UVM_MEDIUM)
         m_drv.drive_sig();
         phase.drop_objection(this);
     endtask
