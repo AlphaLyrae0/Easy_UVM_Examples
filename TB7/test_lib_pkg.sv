@@ -4,7 +4,7 @@ package test_lib_pkg;
 
   bit param_a, param_b, param_c;
 
-  virtual bfm_if vif; //<==== Virtual Interface
+  virtual test_if vif; //<==== Virtual Interface
 
   class my_test extends uvm_test;
     `uvm_component_utils(my_test)

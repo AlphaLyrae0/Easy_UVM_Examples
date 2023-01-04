@@ -26,12 +26,12 @@ $(COM_DIR)/bfm.sdb : ./bfm.sv
 	$(XVLOG) -L uvm --sv $<
 $(COM_DIR)/test_lib_pkg.sdb : ./test_lib_pkg.sv
 	$(XVLOG) -L uvm --sv $<
-$(COM_DIR)/bfm_if.sdb : ./bfm_if.sv
+$(COM_DIR)/test_if.sdb : ./test_if.sv
 	$(XVLOG) -L uvm --sv $<
 $(COM_DIR)/test_bench.sdb : ./test_bench.sv
 	$(XVLOG) -L uvm --sv $<
 
-$(COM_DIR).test_bench : $(COM_DIR)/dut.sdb $(COM_DIR)/bfm.sdb $(COM_DIR)/test_lib_pkg.sdb $(COM_DIR)/bfm_if.sdb $(COM_DIR)/test_bench.sdb
+$(COM_DIR).test_bench : $(COM_DIR)/dut.sdb $(COM_DIR)/bfm.sdb $(COM_DIR)/test_lib_pkg.sdb $(COM_DIR)/test_if.sdb $(COM_DIR)/test_bench.sdb
 	$(XELAB) -L uvm test_bench
 
 clean :

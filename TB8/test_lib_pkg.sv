@@ -32,7 +32,6 @@ package test_lib_pkg;
             this.check_result();        // <========
         join_none
         vif.reset_release();
-        `uvm_info(get_type_name(), "Reset Is Released!!!", UVM_MEDIUM)
         this.drive_sig();               // <========
         phase.drop_objection(this);
     endtask

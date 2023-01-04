@@ -19,8 +19,8 @@ module test_bench;
   end
 
   dut i_dut (.clk, .rst_n(i_dut_if.rst_n),
-     .param_a(param_a), .param_b(param_b), .param_c(param_c),
-     .sig(i_sig_if.sig),                                    // <========
-     .x(i_xyz_if.x) , .y(i_xyz_if.y), .z(i_xyz_if.z));      // <========
+     .param_a(i_dut_if.param_a), .param_b(i_dut_if.param_b), .param_c(i_dut_if.param_c),    // <========
+     .sig(i_sig_if.sig),                                                                    // <========
+     .x(i_xyz_if.x) , .y(i_xyz_if.y), .z(i_xyz_if.z));                                      // <========
 
 endmodule

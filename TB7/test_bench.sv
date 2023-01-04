@@ -14,7 +14,7 @@ module test_bench;
   //############## ==========> Classes were moved into test_lib_pkg
 
   initial begin
-    test_lib_pkg::vif = test_bench.i_bfm_if;    // <========= interface handle passing
+    test_lib_pkg::vif = test_bench.i_test_if;   // <========= interface handle passing
     uvm_pkg::run_test(); //"my_test");
   end
 
@@ -25,7 +25,6 @@ module test_bench;
   endtask
 
   bfm i_bfm(.clk, .sig);
-//bfm_if i_bfm_if(); // Instanciated by bind, not here
 
   dut i_dut (.clk, .rst_n,
      .param_a(param_a), .param_b(param_b), .param_c(param_c),
