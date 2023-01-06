@@ -12,9 +12,9 @@ module test_bench;
   xyz_if i_xyz_if(.clk, .rst_n(i_dut_if.rst_n) );   // <========
 
   initial begin
-    test_lib_pkg  ::vif = i_dut_if;
-    agent_pkg     ::vif = i_sig_if;                 // <========
-    scoreboard_pkg::vif = i_xyz_if;                 // <========
+    test_lib_pkg ::vif = i_dut_if;
+    sig_agent_pkg::vif = i_sig_if;                 // <========
+    xyz_agent_pkg::vif = i_xyz_if;                 // <========
     uvm_pkg::run_test(); //"my_test");
   end
 

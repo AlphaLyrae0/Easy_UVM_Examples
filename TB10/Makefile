@@ -20,24 +20,24 @@ run : $(COM_DIR).test_bench
 gui : $(COM_DIR).test_bench
 	$(XSIM) test_bench --gui
 
-$(COM_DIR)/dut.sdb : ../dut.sv
+$(COM_DIR)/dut.sdb    : ../dut.sv
 	$(XVLOG) -L uvm --sv $<
-$(COM_DIR)/agent_pkg.sdb : ./agent_pkg.sv
+$(COM_DIR)/dut_if.sdb : ./dut_if.sv
 	$(XVLOG) -L uvm --sv $<
-$(COM_DIR)/scoreboard_pkg.sdb : ./scoreboard_pkg.sv
+$(COM_DIR)/sig_if.sdb        : ./sig_agent/sig_if.sv
 	$(XVLOG) -L uvm --sv $<
-$(COM_DIR)/test_lib_pkg.sdb : ./test_lib_pkg.sv
+$(COM_DIR)/sig_agent_pkg.sdb : ./sig_agent/sig_agent_pkg.sv
 	$(XVLOG) -L uvm --sv $<
-$(COM_DIR)/dut_if.sdb    : ./dut_if.sv
+$(COM_DIR)/xyz_if.sdb        : ./xyz_agent/xyz_if.sv
 	$(XVLOG) -L uvm --sv $<
-$(COM_DIR)/sig_if.sdb : ./sig_if.sv
+$(COM_DIR)/xyz_agent_pkg.sdb : ./xyz_agent/xyz_agent_pkg.sv
 	$(XVLOG) -L uvm --sv $<
-$(COM_DIR)/xyz_if.sdb : ./xyz_if.sv
+$(COM_DIR)/test_lib_pkg.sdb  : ./test_lib_pkg.sv
 	$(XVLOG) -L uvm --sv $<
-$(COM_DIR)/test_bench.sdb : ./test_bench.sv
+$(COM_DIR)/test_bench.sdb    : ./test_bench.sv
 	$(XVLOG) -L uvm --sv $<
 
-$(COM_DIR).test_bench : $(COM_DIR)/dut.sdb $(COM_DIR)/agent_pkg.sdb $(COM_DIR)/scoreboard_pkg.sdb $(COM_DIR)/test_lib_pkg.sdb $(COM_DIR)/dut_if.sdb $(COM_DIR)/sig_if.sdb $(COM_DIR)/xyz_if.sdb $(COM_DIR)/test_bench.sdb
+$(COM_DIR).test_bench : $(COM_DIR)/dut.sdb $(COM_DIR)/sig_agent_pkg.sdb $(COM_DIR)/xyz_agent_pkg.sdb $(COM_DIR)/test_lib_pkg.sdb $(COM_DIR)/dut_if.sdb $(COM_DIR)/sig_if.sdb $(COM_DIR)/xyz_if.sdb $(COM_DIR)/test_bench.sdb
 	$(XELAB) -L uvm test_bench
 
 clean :

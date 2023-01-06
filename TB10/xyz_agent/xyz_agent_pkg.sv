@@ -1,5 +1,5 @@
 `include "uvm_macros.svh"
-package scoreboard_pkg;
+package xyz_agent_pkg;
   import uvm_pkg::*;
 
   virtual xyz_if vif;   //<==== Virtual Interface

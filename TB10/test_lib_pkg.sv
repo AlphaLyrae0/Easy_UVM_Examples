@@ -21,14 +21,14 @@ package test_lib_pkg;
     rand bit[2:0] param_abc = 3'b110;
 
     virtual function void set_params();
-        {vif.param_a, vif.param_b, vif.param_c} = param_abc;                // <=======
+        {vif.param_a, vif.param_b, vif.param_c} = param_abc;               // <========
     endfunction
 
-    agent_pkg     ::my_driver  m_drv;                                       // <========
-    scoreboard_pkg::my_monitor m_mon;                                       // <========
-    virtual function void build_phase(uvm_phase phase);                     // <========
-        m_drv = agent_pkg     ::my_driver ::type_id::create("m_drv", this); // <========
-        m_mon = scoreboard_pkg::my_monitor::type_id::create("m_mon", this); // <========
+    sig_agent_pkg::my_driver  m_drv;                                       // <========
+    xyz_agent_pkg::my_monitor m_mon;                                       // <========
+    virtual function void build_phase(uvm_phase phase);                    // <========
+        m_drv = sig_agent_pkg::my_driver ::type_id::create("m_drv", this); // <========
+        m_mon = xyz_agent_pkg::my_monitor::type_id::create("m_mon", this); // <========
     endfunction
 
     virtual function void start_of_simulation_phase(uvm_phase phase);

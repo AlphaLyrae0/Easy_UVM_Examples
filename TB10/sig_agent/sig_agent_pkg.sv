@@ -1,5 +1,5 @@
 `include "uvm_macros.svh"
-package agent_pkg;
+package sig_agent_pkg;
   import uvm_pkg::*;
 
   virtual sig_if vif;   //<==== Virtual Interface
