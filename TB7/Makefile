@@ -6,9 +6,13 @@ all : my_test random_test
 
 include ../common.mk
 
-$(COM_DIR).test_bench : $(COM_DIR)/test_lib_pkg.sdb
-$(COM_DIR).test_bench : $(COM_DIR)/test_if.sdb
-$(COM_DIR).test_bench : $(COM_DIR)/bfm.sdb
+$(COM_DIR).test_bench/axsim : $(COM_DIR)/test_lib_pkg.sdb
+$(COM_DIR).test_bench/axsim : $(COM_DIR)/test_if.sdb
+$(COM_DIR).test_bench/axsim : $(COM_DIR)/bfm.sdb
+
+$(COM_DIR).test_bench/xsimk : $(COM_DIR)/test_lib_pkg.sdb
+$(COM_DIR).test_bench/xsimk : $(COM_DIR)/test_if.sdb
+$(COM_DIR).test_bench/xsimk : $(COM_DIR)/bfm.sdb
 
 $(COM_DIR)/test_bench.sdb : $(COM_DIR)/test_lib_pkg.sdb
 
