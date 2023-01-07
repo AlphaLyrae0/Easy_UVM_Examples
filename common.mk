@@ -13,7 +13,9 @@ gui : $(COM_DIR).test_bench
 
 $(COM_DIR)/dut.sdb : ../dut.sv
 	$(XVLOG) -L uvm --sv $<
-$(COM_DIR)/test_bench.sdb : ./test_bench.sv
+#$(COM_DIR)/test_bench.sdb : ./test_bench.sv
+#	$(XVLOG) -L uvm --sv $<
+$(COM_DIR)/%.sdb : ./%.sv
 	$(XVLOG) -L uvm --sv $<
 
 $(COM_DIR).test_bench : $(COM_DIR)/dut.sdb $(COM_DIR)/test_bench.sdb

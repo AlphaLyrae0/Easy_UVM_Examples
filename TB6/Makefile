@@ -6,8 +6,5 @@ all : my_test random_test
 
 include ../common.mk
 
-$(COM_DIR)/bfm.sdb : ./bfm.sv
-	$(XVLOG) -L uvm --sv $<
-
 $(COM_DIR).test_bench : $(COM_DIR)/bfm.sdb
 

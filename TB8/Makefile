@@ -6,11 +6,6 @@ all : my_test random_test
 
 include ../common.mk
 
-$(COM_DIR)/test_lib_pkg.sdb : ./test_lib_pkg.sv
-	$(XVLOG) -L uvm --sv $<
-$(COM_DIR)/dut_if.sdb       : ./dut_if.sv
-	$(XVLOG) -L uvm --sv $<
-
 $(COM_DIR).test_bench : $(COM_DIR)/test_lib_pkg.sdb
 $(COM_DIR).test_bench : $(COM_DIR)/dut_if.sdb
 
