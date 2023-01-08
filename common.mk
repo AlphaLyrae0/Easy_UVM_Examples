@@ -1,6 +1,6 @@
 VIVADO_DIR := /tools/Xilinx/Vivado/2022.2/bin
-XVLOG := $(VIVADO_DIR)/xvlog --incr
-XELAB := $(VIVADO_DIR)/xelab --incr
+XVLOG := $(VIVADO_DIR)/xvlog
+XELAB := $(VIVADO_DIR)/xelab
 XSIM  := $(VIVADO_DIR)/xsim
 
 COM_DIR = xsim.dir/work
