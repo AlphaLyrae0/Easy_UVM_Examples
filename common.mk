@@ -20,10 +20,10 @@ $(COM_DIR)/%.sdb : ./%.sv
 	$(XVLOG) -L uvm --sv $<
 
 $(COM_DIR).test_bench/xsimk : $(COM_DIR)/dut.sdb $(COM_DIR)/test_bench.sdb
-	$(XELAB) -L uvm --debug typical test_bench
+	$(XELAB) test_bench -L uvm --debug typical
 
 $(COM_DIR).test_bench/axsim : $(COM_DIR)/dut.sdb $(COM_DIR)/test_bench.sdb
-	$(XELAB) -L uvm --standalone    test_bench
+	$(XELAB) test_bench -L uvm --standalone
 
 
 clean :
