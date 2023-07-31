@@ -9,21 +9,17 @@ module test_bench;
 
   initial forever #(100/2) clk = !clk;
 
-  event test_done_evt;
-
   //############################################
   class my_test extends uvm_test;
-        `uvm_component_utils(my_test)
+    `uvm_component_utils(my_test)
 
     function new(string name, uvm_component parent);
         super.new(name, parent);
     endfunction
 
     virtual task run_phase (uvm_phase phase);
+        `uvm_info( get_type_name(), "############ Hello! This is an UVM message. ################", UVM_MEDIUM)
         phase.raise_objection(this); // <============ To prevent from finishing sim
-        `uvm_info( "my_test", "Hello! This is an UVM message.", UVM_MEDIUM)
-        @(test_done_evt);            // <============ To wait for test done
-        phase.drop_objection(this);  // <============ Allow to finish sim
     endtask
 
   endclass
@@ -41,7 +37,7 @@ module test_bench;
     @(posedge clk) sig = 'b0_1_1;
     @(posedge clk) sig = 'b0_0_1;
     @(posedge clk) sig = 'b0_0_0;
-    -> test_done_evt;  //$finish();
+    $finish();
   end
 
   dut i_dut (.clk, .rst_n,

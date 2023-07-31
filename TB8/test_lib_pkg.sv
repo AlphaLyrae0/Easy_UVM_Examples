@@ -20,6 +20,7 @@ package test_lib_pkg;
     endfunction
 
     virtual function void start_of_simulation_phase(uvm_phase phase);
+        `uvm_info( get_type_name(), "############ Hello! This is an UVM message. ################", UVM_MEDIUM)
         `uvm_info(get_type_name(), "Start of Test !!!!", UVM_MEDIUM)
         set_params();
         `uvm_info(get_type_name(), $sformatf("param_a = %b, param_b = %b, param_c =%b", param_a, param_b, param_c), UVM_MEDIUM)
@@ -27,7 +28,6 @@ package test_lib_pkg;
 
     virtual task run_phase(uvm_phase phase);
         phase.raise_objection(this);
-        `uvm_info( "my_test", "Hello! This is an UVM message.", UVM_MEDIUM)
         fork
             this.check_result();        // <========
         join_none
@@ -35,6 +35,10 @@ package test_lib_pkg;
         this.drive_sig();               // <========
         phase.drop_objection(this);
     endtask
+
+    virtual function void final_phase(uvm_phase phase);
+        `uvm_info( get_type_name(), "############ Bye! This is the end of an UVM test. ################", UVM_MEDIUM)
+    endfunction
 
     virtual task drive_sig();           // <======== Added
         `uvm_info(get_type_name(), "BFM start driving!!!", UVM_MEDIUM);
