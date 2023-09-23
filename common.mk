@@ -1,31 +1,33 @@
-VIVADO_DIR := /tools/Xilinx/Vivado/2022.2/bin
-XVLOG := $(VIVADO_DIR)/xvlog
-XELAB := $(VIVADO_DIR)/xelab
-XSIM  := $(VIVADO_DIR)/xsim
+VIVADO_DIR := /tools/Xilinx/Vivado/2022.2
+#export LD_LIBRARY_PATH := ${LD_LIBRARY_PATH}:${VIVADO_DIR}/lib/lnx64.o:${VIVADO_DIR}/lib/lnx64.o/Default
+XVLOG := $(VIVADO_DIR)/bin/xvlog
+XELAB := $(VIVADO_DIR)/bin/xelab
+XSIM  := $(VIVADO_DIR)/bin/xsim
 
-COM_DIR = xsim.dir/work
+#SRC_FILES := $(shell ls -R *.sv)
+SRC_FILES += test_bench.sv
+SRC_FILES += ../dut.sv
 
-run : $(COM_DIR).test_bench/axsim
+run : ./xsim.dir/alone/axsim axsim.sh  
 	./axsim.sh $(RUN_OPT)
-#	$(XSIM) test_bench --runall $(RUN_OPT)
+cli : ./xsim.dir/debug/xsimk
+	$(XSIM) debug $(RUN_OPT)
+gui : ./xsim.dir/debug/xsimk
+	$(XSIM) debug $(RUN_OPT) -gui &
+dump : ./xsim.dir/debug/xsimk
+	$(XSIM) debug $(RUN_OPT) -tclbatch ../dump.tcl -wdb wave.wdb
+wave : wave.wdb
+	$(XSIM) wave.wdb -gui &
 
-gui : $(COM_DIR).test_bench/xsimk
-	$(XSIM) test_bench --gui
+./xsim.dir/debug/xsimk axsim.sh : $(SRC_FILES) 
+	$(XVLOG) -L uvm -sv $^
+	$(XELAB) test_bench -L uvm -debug all  -snapshot debug
 
-$(COM_DIR)/dut.sdb : ../dut.sv
-	$(XVLOG) -L uvm --sv $<
-#$(COM_DIR)/test_bench.sdb : ./test_bench.sv
-#	$(XVLOG) -L uvm --sv $<
-$(COM_DIR)/%.sdb : ./%.sv
-	$(XVLOG) -L uvm --sv $<
-
-$(COM_DIR).test_bench/xsimk : $(COM_DIR)/dut.sdb $(COM_DIR)/test_bench.sdb
-	$(XELAB) test_bench -L uvm --debug typical
-
-$(COM_DIR).test_bench/axsim : $(COM_DIR)/dut.sdb $(COM_DIR)/test_bench.sdb
-	$(XELAB) test_bench -L uvm --standalone
+./xsim.dir/alone/axsim : $(SRC_FILES) 
+	$(XVLOG) -L uvm -sv $^
+	$(XELAB) test_bench -L uvm -standalone -snapshot alone
 
 
 clean :
-	rm -rf *.log *.jou *.pb *.dir *.wdb *.vcd axsim.sh
+	rm -rf *.log *.jou *.pb *.dir *.wdb *.vcd axsim.sh .Xil
 

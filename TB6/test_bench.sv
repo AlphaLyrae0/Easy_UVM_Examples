@@ -33,9 +33,17 @@ module test_bench;
         fork
             check_result();
         join_none
-        reset_release(); //test_sequence();    <========
-        i_bfm.drive_sig();                  // <======== BFM task access
+        reset_release(); //test_sequence();   <=========
+        this.test_sequence_start();         //<=========
         phase.drop_objection(this);
+    endtask
+
+    virtual task test_sequence_start();
+        $display("Start signal driving!!!");
+        i_bfm.drive_sig('b1_1_1); // <======== BFM task access
+        i_bfm.drive_sig('b0_1_1); // <======== BFM task access
+        i_bfm.drive_sig('b0_0_1); // <======== BFM task access
+        i_bfm.drive_sig('b0_0_0); // <======== BFM task access
     endtask
 
     virtual function void final_phase(uvm_phase phase);

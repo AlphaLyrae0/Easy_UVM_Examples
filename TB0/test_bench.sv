@@ -12,10 +12,10 @@ module test_bench;
     repeat(10) @(posedge clk);
     #(100/2)    rst_n = 1;
     $display("Reset Is Released!!!");
-    @(posedge clk) sig = 'b1_1_1;
-    @(posedge clk) sig = 'b0_1_1;
-    @(posedge clk) sig = 'b0_0_1;
-    @(posedge clk) sig = 'b0_0_0;
+    @(negedge clk) sig = 'b1_1_1;
+    @(negedge clk) sig = 'b0_1_1;
+    @(negedge clk) sig = 'b0_0_1;
+    @(negedge clk) sig = 'b0_0_0;
     $finish();
  end
 

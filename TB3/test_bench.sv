@@ -54,10 +54,10 @@ module test_bench;
     repeat(10) @(posedge clk);
     #(100/2)    rst_n = 1;
     `uvm_info("test_bench.test_sequence()", "Reset Is Released!!!", UVM_MEDIUM)
-    @(posedge clk) sig = 'b1_1_1;
-    @(posedge clk) sig = 'b0_1_1;
-    @(posedge clk) sig = 'b0_0_1;
-    @(posedge clk) sig = 'b0_0_0;
+    @(negedge clk) sig = 'b1_1_1;
+    @(negedge clk) sig = 'b0_1_1;
+    @(negedge clk) sig = 'b0_0_1;
+    @(negedge clk) sig = 'b0_0_0;
   //-> test_done_evt;  //$finish();     // =========> Not necessary now
   endtask
 //end

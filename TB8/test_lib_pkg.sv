@@ -32,7 +32,7 @@ package test_lib_pkg;
             this.check_result();        // <========
         join_none
         vif.reset_release();
-        this.drive_sig();               // <========
+        this.test_sequence_start();
         phase.drop_objection(this);
     endtask
 
@@ -40,13 +40,17 @@ package test_lib_pkg;
         `uvm_info( get_type_name(), "############ Bye! This is the end of an UVM test. ################", UVM_MEDIUM)
     endfunction
 
-    virtual task drive_sig();           // <======== Added
-        `uvm_info(get_type_name(), "BFM start driving!!!", UVM_MEDIUM);
-        @(posedge vif.clk) sig = 'b1_1_1;
-        @(posedge vif.clk) sig = 'b0_1_1;
-        @(posedge vif.clk) sig = 'b0_0_1;
-        @(posedge vif.clk) sig = 'b0_0_0;
+    virtual task test_sequence_start();
+        `uvm_info(get_type_name(), "Start signal driving!!!", UVM_MEDIUM);
+        this.drive_sig('b1_1_1); // <===========
+        this.drive_sig('b0_1_1); // <===========
+        this.drive_sig('b0_0_1); // <===========
+        this.drive_sig('b0_0_0); // <===========
     endtask
+
+    virtual task drive_sig(bit[0:2] val); // <==========
+        @(negedge vif.clk) sig = val;     // <==========
+    endtask                               // <==========
 
     virtual task check_result();        // <======== Added
         int i;

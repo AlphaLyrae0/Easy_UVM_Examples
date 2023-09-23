@@ -6,8 +6,8 @@ interface test_if();
         test_bench.reset_release();
     endtask
 
-    task drive_sig();
-        i_bfm.drive_sig();
+    task drive_sig(bit[0:2] val);
+        i_bfm.drive_sig(val);
     endtask
 
     task check_result();

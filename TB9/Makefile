@@ -1,16 +1,14 @@
 
-all : my_test random_test
+SRC_FILES := test_lib_pkg.sv
+SRC_FILES += dut_if.sv
 
-%_test :
-	make run RUN_OPT="--testplusarg "UVM_TESTNAME=$@""
+all : run_my_test run_random_test
+
+run_% :
+	make run  RUN_OPT="-testplusarg UVM_TESTNAME=$*"
+dump_% :
+	make dump RUN_OPT="-testplusarg UVM_TESTNAME=$*"
+gui_% :
+	make gui  RUN_OPT="-testplusarg UVM_TESTNAME=$*"
 
 include ../common.mk
-
-$(COM_DIR).test_bench/axsim : $(COM_DIR)/test_lib_pkg.sdb
-$(COM_DIR).test_bench/axsim : $(COM_DIR)/dut_if.sdb
-
-$(COM_DIR).test_bench/xsimk : $(COM_DIR)/test_lib_pkg.sdb
-$(COM_DIR).test_bench/xsimk : $(COM_DIR)/dut_if.sdb
-
-$(COM_DIR)/test_bench.sdb : $(COM_DIR)/test_lib_pkg.sdb
-
