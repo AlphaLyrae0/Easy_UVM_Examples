@@ -33,8 +33,9 @@ module test_bench;
         fork
             check_result();
         join_none
-        reset_release(); //test_sequence();   <=========
-        this.test_sequence_start();         //<=========
+      //test_sequence();             // =========>
+        reset_release();             // <=========
+        this.test_sequence_start();  // <=========
         phase.drop_objection(this);
     endtask
 
