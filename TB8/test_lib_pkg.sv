@@ -41,7 +41,7 @@ package test_lib_pkg;
     endfunction
 
     virtual task test_sequence_start();
-        `uvm_info(get_type_name(), "Start signal driving!!!", UVM_MEDIUM);
+        `uvm_info(get_type_name(), "Start signal driving!!!", UVM_MEDIUM)
         this.drive_sig('b1_1_1); // <===========
         this.drive_sig('b0_1_1); // <===========
         this.drive_sig('b0_0_1); // <===========

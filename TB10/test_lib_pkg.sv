@@ -50,8 +50,8 @@ package test_lib_pkg;
 
     my_item m_item;
     virtual task test_sequence_start();
-        `uvm_info(get_type_name(), "Start sending items!!!", UVM_MEDIUM);
-        m_item = my_item::type_id::create("m_item");
+        `uvm_info(get_type_name(), "Start sending items!!!", UVM_MEDIUM)
+        m_item = my_item::type_id::create("m_item");   // <===========
         m_item.sig ='b1_1_1; m_drv.start_item(m_item); // <===========
         m_item.sig ='b0_1_1; m_drv.start_item(m_item); // <===========
         m_item.sig ='b0_0_1; m_drv.start_item(m_item); // <===========

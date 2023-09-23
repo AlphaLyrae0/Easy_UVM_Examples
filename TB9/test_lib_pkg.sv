@@ -15,15 +15,8 @@ package test_lib_pkg;
         super.new(name, parent);
     endfunction
 
-    rand bit[0:2] item;
-
-    virtual task send_item(bit[0:2] val);
-      this.item = val;
-      this.drive_sig();
-    endtask
-
-    virtual task drive_sig();
-        @(negedge vif.clk) sig = this.item;
+    virtual task drive_sig(bit[0:2] val);
+        @(negedge vif.clk) sig = val;
     endtask
 
   endclass
@@ -87,10 +80,10 @@ package test_lib_pkg;
 
     virtual task test_sequence_start();
         `uvm_info(get_type_name(), "Start sending items!!!", UVM_MEDIUM);
-        m_drv.send_item('b1_1_1); // <===========
-        m_drv.send_item('b0_1_1); // <===========
-        m_drv.send_item('b0_0_1); // <===========
-        m_drv.send_item('b0_0_0); // <===========
+        m_drv.drive_sig('b1_1_1); // <===========
+        m_drv.drive_sig('b0_1_1); // <===========
+        m_drv.drive_sig('b0_0_1); // <===========
+        m_drv.drive_sig('b0_0_0); // <===========
     endtask
 
     virtual function void final_phase(uvm_phase phase);
