@@ -39,6 +39,10 @@ module test_bench;
         phase.drop_objection(this);
     endtask
 
+    virtual function void final_phase(uvm_phase phase);
+        `uvm_info( get_type_name(), "############ Bye! This is the end of an UVM test. ################", UVM_MEDIUM)
+    endfunction
+
     virtual task test_sequence_start();
         $display("Start signal driving!!!");
         i_bfm.drive_sig('b1_1_1); // <======== BFM task access
@@ -46,10 +50,6 @@ module test_bench;
         i_bfm.drive_sig('b0_0_1); // <======== BFM task access
         i_bfm.drive_sig('b0_0_0); // <======== BFM task access
     endtask
-
-    virtual function void final_phase(uvm_phase phase);
-        `uvm_info( get_type_name(), "############ Bye! This is the end of an UVM test. ################", UVM_MEDIUM)
-    endfunction
 
   endclass
   //############################################

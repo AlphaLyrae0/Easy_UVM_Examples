@@ -34,17 +34,17 @@ package test_lib_pkg;
         phase.drop_objection(this);
     endtask
 
-   virtual task test_sequence_start();
+    virtual function void final_phase(uvm_phase phase);
+        `uvm_info( get_type_name(), "############ Bye! This is the end of an UVM test. ################", UVM_MEDIUM)
+    endfunction
+
+    virtual task test_sequence_start();
         $display("Start signal driving!!!");
         vif.drive_sig('b1_1_1); // <========
         vif.drive_sig('b0_1_1); // <========
         vif.drive_sig('b0_0_1); // <========
         vif.drive_sig('b0_0_0); // <========
     endtask
-
-    virtual function void final_phase(uvm_phase phase);
-        `uvm_info( get_type_name(), "############ Bye! This is the end of an UVM test. ################", UVM_MEDIUM)
-    endfunction
 
   endclass
 

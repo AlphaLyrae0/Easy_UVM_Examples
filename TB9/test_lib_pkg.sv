@@ -78,6 +78,10 @@ package test_lib_pkg;
         phase.drop_objection(this);
     endtask
 
+    virtual function void final_phase(uvm_phase phase);
+        `uvm_info( get_type_name(), "############ Bye! This is the end of an UVM test. ################", UVM_MEDIUM)
+    endfunction
+
     virtual task test_sequence_start();
         `uvm_info(get_type_name(), "Start sending items!!!", UVM_MEDIUM);
         m_drv.drive_sig('b1_1_1); // <===========
@@ -85,10 +89,6 @@ package test_lib_pkg;
         m_drv.drive_sig('b0_0_1); // <===========
         m_drv.drive_sig('b0_0_0); // <===========
     endtask
-
-    virtual function void final_phase(uvm_phase phase);
-        `uvm_info( get_type_name(), "############ Bye! This is the end of an UVM test. ################", UVM_MEDIUM)
-    endfunction
 
   endclass
 
