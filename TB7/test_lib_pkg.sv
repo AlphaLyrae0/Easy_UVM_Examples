@@ -4,7 +4,8 @@ package test_lib_pkg;
 
   bit param_a, param_b, param_c;
 
-  virtual test_if vif; //<==== Virtual Interface
+  virtual test_if vif;      //<==== Virtual Interface
+  virtual bfm_if  bfm_vif;  //<==== Virtual Interface
 
   class my_test extends uvm_test;
     `uvm_component_utils(my_test)
@@ -40,10 +41,10 @@ package test_lib_pkg;
 
     virtual task test_sequence_start();
         $display("Start signal driving!!!");
-        vif.drive_sig('b1_1_1); // <========
-        vif.drive_sig('b0_1_1); // <========
-        vif.drive_sig('b0_0_1); // <========
-        vif.drive_sig('b0_0_0); // <========
+        bfm_vif.drive_sig('b1_1_1); // <========
+        bfm_vif.drive_sig('b0_1_1); // <========
+        bfm_vif.drive_sig('b0_0_1); // <========
+        bfm_vif.drive_sig('b0_0_0); // <========
     endtask
 
   endclass

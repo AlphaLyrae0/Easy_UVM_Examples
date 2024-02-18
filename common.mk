@@ -1,4 +1,5 @@
-VIVADO_DIR := /tools/Xilinx/Vivado/2022.2
+#VIVADO_DIR := /tools/Xilinx/Vivado/2022.2
+ VIVADO_DIR := /tools/Xilinx/Vivado/2023.1
 #export LD_LIBRARY_PATH := ${LD_LIBRARY_PATH}:${VIVADO_DIR}/lib/lnx64.o:${VIVADO_DIR}/lib/lnx64.o/Default
 XVLOG := $(VIVADO_DIR)/bin/xvlog
 XELAB := $(VIVADO_DIR)/bin/xelab

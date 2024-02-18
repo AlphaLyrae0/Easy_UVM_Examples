@@ -14,7 +14,8 @@ module test_bench;
   //############## ==========> Classes were moved into test_lib_pkg
 
   initial begin
-    test_lib_pkg::vif = test_bench.i_test_if;   // <========= interface handle passing
+    test_lib_pkg::vif     = i_test_if;        // <========= interface handle passing
+    test_lib_pkg::bfm_vif = i_bfm.i_probe;    // <========= interface handle passing
     uvm_pkg::run_test(); //"my_test");
   end
 
@@ -23,6 +24,9 @@ module test_bench;
     #(100/2)    rst_n = 1;
     `uvm_info("test_bench.test_sequence()", "Reset Is Released!!!", UVM_MEDIUM)
   endtask
+
+  test_if i_test_if();              // <================ Added test_if
+  bind bfm bfm_if i_probe();        // <================ Bind bfm_if to the BFM
 
   bfm i_bfm(.clk, .sig);
 

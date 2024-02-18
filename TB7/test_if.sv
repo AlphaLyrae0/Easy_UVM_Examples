@@ -1,4 +1,3 @@
-bind test_bench test_if i_test_if();
 
 interface test_if();
 
