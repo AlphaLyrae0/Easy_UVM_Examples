@@ -11,6 +11,9 @@ package test_lib_pkg;
   virtual dut_if vif;
 
   class my_test extends uvm_test;
+
+    rand bit[2:0] param_abc = 3'b110;
+
   //`uvm_component_utils(my_test)
     `uvm_component_utils_begin(my_test)                         // <=======
         `uvm_field_int(param_abc, UVM_PRINT | UVM_BIN)          // <=======
@@ -19,8 +22,6 @@ package test_lib_pkg;
     function new(string name, uvm_component parent);
         super.new(name, parent);
     endfunction
-
-    rand bit[2:0] param_abc = 3'b110;
 
     virtual function void set_params();
         {vif.param_a, vif.param_b, vif.param_c} = param_abc;               // <========

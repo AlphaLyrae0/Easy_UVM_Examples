@@ -14,8 +14,8 @@ module test_bench;
   //############## ==========> Classes were moved into test_lib_pkg
 
   initial begin
-    test_lib_pkg::vif     = i_test_if;        // <========= interface handle passing
-    test_lib_pkg::bfm_vif = i_bfm.i_probe;    // <========= interface handle passing
+    test_lib_pkg::vif     = test_bench.i_test_if;  // <========= interface handle passing
+    test_lib_pkg::bfm_vif = i_bfm.i_probe;         // <========= interface handle passing
     uvm_pkg::run_test(); //"my_test");
   end
 

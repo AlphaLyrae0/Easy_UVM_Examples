@@ -5,6 +5,9 @@ package sig_agent_pkg;
   virtual sig_if vif;   //<==== Virtual Interface
 
   class my_item extends uvm_sequence_item;        // <======= Added
+
+    rand bit[0:2] sig;
+
   //`uvm_object_utils(my_item)
     `uvm_object_utils_begin(my_item)
         `uvm_field_int(sig, UVM_PRINT | UVM_BIN)
@@ -13,8 +16,6 @@ package sig_agent_pkg;
     function new(string name = "");
       super.new(name);
     endfunction
-
-    rand bit[0:2] sig;
 
   endclass
 
