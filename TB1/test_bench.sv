@@ -19,7 +19,8 @@ module test_bench;
 
     virtual task run_phase (uvm_phase phase);
         `uvm_info( get_type_name(), "############ Hello! This is an UVM message. ################", UVM_MEDIUM)
-        phase.raise_objection(this); // <============ To prevent from finishing sim
+      //uvm_pkg::uvm_top.finish_on_completion = 0; // <============ To prevent from finishing sim
+        phase.raise_objection(this);               // <============ To prevent from finishing sim
     endtask
 
   endclass
