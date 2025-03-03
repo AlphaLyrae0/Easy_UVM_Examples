@@ -18,15 +18,18 @@ module test_bench;
     endfunction
 
     virtual task run_phase (uvm_phase phase);
-        `uvm_info( get_type_name(), "############ Hello! This is an UVM message. ################", UVM_MEDIUM)
       //uvm_pkg::uvm_top.finish_on_completion = 0; // <============ To prevent from finishing sim
         phase.raise_objection(this);               // <============ To prevent from finishing sim
+        `uvm_info( get_type_name(), "############ Hello! This is an UVM message. ################", UVM_MEDIUM)
     endtask
 
   endclass
   //############################################
 
-  initial uvm_pkg::run_test("my_test"); // <============ Start UVM Test
+  initial begin
+  //uvm_pkg::uvm_top.finish_on_completion = 0; // <============ To prevent from finishing sim
+    uvm_pkg::run_test("my_test");              // <============ Start UVM Test
+  end
 
   initial begin
     `uvm_info("test_bench", "Start of Test !!!!", UVM_MEDIUM)
